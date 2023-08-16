@@ -1,0 +1,28 @@
+
+package Lab_3
+import chisel3._
+import chisel3.tester._
+import org.scalatest.FreeSpec
+
+class Encoder4to2_Test extends FreeSpec with ChiselScalatestTester {
+  "4-to-2 Encoder Test" in {
+    test(new Encoder4to2()) { dut =>
+
+      dut.io.in.poke("b0001".U)
+      dut.clock.step(1)
+      dut.io.out.expect("b00".U)
+
+      dut.io.in.poke("b0010".U)
+      dut.clock.step(1)
+      dut.io.out.expect("b01".U)
+
+      dut.io.in.poke("b0100".U)
+      dut.clock.step(1)
+      dut.io.out.expect("b10".U)
+
+      dut.io.in.poke("b1000".U)
+      dut.clock.step(1)
+      dut.io.out.expect("b11".U)
+    }
+  }
+}
