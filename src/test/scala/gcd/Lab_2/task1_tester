@@ -5,7 +5,7 @@
 // import org.scalatest.FreeSpec
 // import chisel3.experimental.BundleLiterals._
 
-// class Task1_Tester extends FreeSpec with ChiselScalatestTester {
+// class task1_tester extends FreeSpec with ChiselScalatestTester {
 //   "task1 Tester file" in {
 //     test(new Mux_5to1) { b =>
 //         b.io.s0.poke(0.B)
