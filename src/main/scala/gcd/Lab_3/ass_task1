@@ -1,0 +1,45 @@
+// Task 1: In a standard RISC-V ALU whenever we have a branch instruction, the ALU computes it
+// and tells the PC whether or not to jump to the immediate value. Implement the conditional branch
+// module of a standard RV32I using combinational circuits and control constructs. A skeleton code is
+// given in Listing 3.10, start coding in it. Block level diagram of conditional branch module is shown
+// in Figure 3.6.
+
+package Lab_3
+import chisel3._
+import chisel3.util._
+
+class LM_IO_Interface_BranchControl extends Bundle {
+  val fnct3 = Input(UInt(3.W))
+  val branch = Input(Bool())
+  val arg_x = Input(UInt(32.W))
+  val arg_y = Input(UInt(32.W))
+  val br_taken = Output(Bool())
+}
+
+class BranchControl extends Module {
+  val io = IO(new LM_IO_Interface_BranchControl)
+
+  // Start Coding here
+  val isBranchTaken = Wire(Bool())
+  
+  // Implement the branch control logic here
+  when(io.fnct3 === "b000".U) { // Branch if equal
+    isBranchTaken := io.arg_x === io.arg_y
+  }.elsewhen(io.fnct3 === "b001".U) { // Branch if not equal
+    isBranchTaken := io.arg_x =/= io.arg_y
+  }.elsewhen(io.fnct3 === "b100".U) { // Branch if less than
+    isBranchTaken := io.arg_x.asSInt < io.arg_y.asSInt
+  }.elsewhen(io.fnct3 === "b101".U) { // Branch if greater than or equal
+    isBranchTaken := io.arg_x.asSInt >= io.arg_y.asSInt
+  }.otherwise {
+    isBranchTaken := false.B
+  }
+  
+  // Connect the branch control signal
+  io.br_taken := Mux(io.branch, isBranchTaken, false.B)
+  // End your code here
+}
+
+object BranchControlMain extends App {
+  println((new chisel3.stage.ChiselStage).emitVerilog(new BranchControl))
+}
