@@ -1,0 +1,27 @@
+package Lab_3
+import chisel3._
+import chisel3.tester._
+import org.scalatest.FreeSpec
+import chisel3.experimental.BundleLiterals._
+
+class Decoder2to4Tester extends FreeSpec with ChiselScalatestTester {
+  "Decoder2to4 Tester" in {
+    test(new Decoder2to4()) { dut =>
+      dut.io.in.poke("b00".U)
+      dut.clock.step(1)
+      dut.io.out.expect("b0001".U)
+
+      dut.io.in.poke("b01".U)
+      dut.clock.step(1)
+      dut.io.out.expect("b0010".U)
+
+      dut.io.in.poke("b10".U)
+      dut.clock.step(1)
+      dut.io.out.expect("b0100".U)
+
+      dut.io.in.poke("b11".U)
+      dut.clock.step(1)
+      dut.io.out.expect("b1000".U)
+    }
+  }
+}
