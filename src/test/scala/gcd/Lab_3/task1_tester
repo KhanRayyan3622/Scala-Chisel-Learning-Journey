@@ -1,0 +1,30 @@
+
+package Lab_3
+import chisel3._
+import chisel3.tester._
+import org.scalatest.FreeSpec
+
+class BranchControlTester extends FreeSpec with ChiselScalatestTester {
+  "BranchControl" in {
+    test(new BranchControl) { dut =>
+      // Test cases
+      val testCases = List(
+        (0.U, false.B, 10.U, 20.U, false.B), // No branch
+        (0.U, true.B, 10.U, 20.U, false.B),  // No branch (branch signal not asserted)
+        (0.U, true.B, 10.U, 20.U, true.B),   // Branch taken
+        (1.U, true.B, 10.U, 20.U, true.B),   // Branch taken
+        (2.U, true.B, 10.U, 20.U, false.B),  // No branch (unsupported fnct3)
+        (4.U, true.B, 10.U, 20.U, false.B),  // No branch (unsupported fnct3)
+      )
+
+      for ((fnct3, branch, arg_x, arg_y, expected) <- testCases) {
+        dut.io.fnct3.poke(fnct3)
+        dut.io.branch.poke(branch)
+        dut.io.arg_x.poke(arg_x)
+        dut.io.arg_y.poke(arg_y)
+        dut.clock.step(1)
+        dut.io.br_taken.expect(expected)
+      }
+    }
+  }
+}
