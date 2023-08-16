@@ -1,0 +1,31 @@
+package Lab_3
+import chisel3._
+import chisel3.util._
+
+class LM_IO_Interface_ImmdValGen extends Bundle {
+  val instr = Input(UInt(32.W))
+  val immd_se = Output(UInt(32.W))
+}
+
+class ImmdValGen extends Module {
+  val io = IO(new LM_IO_Interface_ImmdValGen)
+
+  val imm_i = io.instr(31, 20)
+  val imm_s = Cat(io.instr(31, 25), io.instr(11, 7))
+  val imm_b = Cat(io.instr(31), io.instr(7), io.instr(30, 25), io.instr(11, 8))
+  val imm_u = io.instr(31, 12)
+  val imm_j = Cat(io.instr(31), io.instr(19, 12), io.instr(20), io.instr(30, 21))
+
+  val imm_j_se = Cat(imm_j(19), imm_j)
+  val imm_b_se = Cat(imm_b(11), imm_b)
+  val imm_s_se = Cat(imm_s(11), imm_s)
+  val imm_i_se = Cat(imm_i(11), imm_i)
+  
+  io.immd_se := MuxCase(0.U, Seq(
+    (io.instr(6)) -> imm_j_se,
+    (io.instr(5)) -> imm_b_se,
+    (io.instr(4)) -> imm_s_se,
+    (io.instr(3)) -> imm_i_se,
+    (io.instr(2)) -> Cat(imm_u, 0.U(12.W))
+  ))
+}
