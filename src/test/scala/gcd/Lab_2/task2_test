@@ -5,7 +5,7 @@ import chisel3._
 import chisel3.tester._
 import org.scalatest.FreeSpec
 import chisel3.experimental.BundleLiterals._
-a
+
 class task2_tester extends FreeSpec with ChiselScalatestTester {
     "Task 2 Tester File" in {
         test(new barrel_shift()){ dut =>
