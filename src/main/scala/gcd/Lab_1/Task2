@@ -1,0 +1,52 @@
+package Lab_1
+
+import chisel3._
+import chisel3.util._
+import java.io.File
+
+class Up_Down_Counter ( n : Int ) extends Module {  //n=10
+    val io = IO (new Bundle {
+    val data_in = Input (UInt(n.W))
+    // val reload = Input( Bool())
+    val out = Output( Bool())
+    })
+    io.out := 0.B
+    // val counter = RegInit (0.U(n.W))
+    val count = RegInit(0.U(n.W))
+    val max_count = RegInit(n.U(n.W))
+    var reload = RegInit(false.B)  //the register pin is initialized with 0
+
+    def genCounter(n : Int , max : UInt, reload1 : Bool) = {        
+        when(reload1 === 0.B)  //first initial phase here it is from 0 to 10
+        {
+            when(count === max )  //and when count=10 that is max value
+            {
+                io.out :=  true.B // the output becomes true/1
+                count := count - 1.U //subtact 1 from count that is 10 to make it 9
+                reload1 := true.B  //then reload 
+            }.otherwise{   
+                io.out := false.B //or else if output=false 
+                count := count + 1.U //count=
+            }
+            
+        }.elsewhen(reload1 === 1.B)  //from 10 to 0 now, 
+        {
+            when(count === 0.U)  //swap them both, or mirror them with same logic
+            {
+                io.out:= true.B
+                count := count + 1.U
+                reload1 := false.B
+            }.otherwise{
+                io.out := false.B
+                count := count - 1.U
+            }
+
+            // io.out := true.B
+            // count := count + 1.U
+            // reload := true.U
+        }
+        
+    }
+    genCounter(n, max_count, reload)
+
+}
