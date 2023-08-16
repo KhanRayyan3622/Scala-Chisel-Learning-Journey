@@ -1,0 +1,22 @@
+package Lab_3
+import chisel3._
+import chisel3.tester._
+
+class ALUTester extends FreeSpec with ChiselScalatestTester {
+  "ALU Test" in {
+    test(new ALU()) { dut =>
+      // Initialize input values
+      dut.io.in_A.poke(5.U) // Input A = 5
+      dut.io.in_B.poke(3.U) // Input B = 3
+      dut.io.alu_Op.poke(ALUOP.ALU_ADD) // ALU operation: ADD
+
+      // Wait for combinational logic to settle
+      dut.clock.step()
+
+      // Check the output
+      dut.io.out.expect(8.U) // Expected output: 5 + 3 = 8
+    }
+  }
+}
+
+
