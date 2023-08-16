@@ -1,0 +1,38 @@
+import chisel3._
+import chisel3.tester._
+import org.scalatest.FreeSpec
+
+class RISCV_ALUTester extends FreeSpec with ChiselScalatestTester {
+  "RISCV_ALU should perform ALU operations correctly" in {
+    test(new RISCV_ALU) { dut =>
+
+      val operandA = 10.U
+      val operandB = 5.U
+      
+      // 4 bit digits value hain
+      val ALU_ADD = 0.U(4.W)
+      val ALU_SUB = 1.U(4.W)
+      val ALU_AND = 2.U(4.W)
+      val ALU_OR = 3.U(4.W)
+      val ALU_XOR = 4.U(4.W)
+      
+      dut.io.operandA.poke(operandA)
+      dut.io.operandB.poke(operandB)
+      
+      dut.io.aluOp.poke(ALU_ADD)
+      dut.io.result.expect(operandA + operandB)
+      
+      dut.io.aluOp.poke(ALU_SUB)
+      dut.io.result.expect(operandA - operandB)
+      
+      dut.io.aluOp.poke(ALU_AND)
+      dut.io.result.expect(operandA & operandB)
+      
+      dut.io.aluOp.poke(ALU_OR)
+      dut.io.result.expect(operandA | operandB)
+      
+      dut.io.aluOp.poke(ALU_XOR)
+      dut.io.result.expect(operandA ^ operandB)
+    }
+  }
+}
