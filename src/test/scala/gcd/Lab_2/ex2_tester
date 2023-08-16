@@ -1,4 +1,3 @@
-
 package Lab_2
 
 import chisel3._
@@ -6,21 +5,25 @@ import chisel3.tester._
 import org.scalatest.FreeSpec
 import chisel3.experimental.BundleLiterals._
 
-class task2_tester extends FreeSpec with ChiselScalatestTester {
-    "Task 2 Tester File" in {
-        test(new barrel_shift()){ dut =>
-            dut.io.in(0).poke(0.B) //a
-            dut.io.in(1).poke(0.B) //b
-            dut.io.in(2).poke(0.B) //c
-            dut.io.in(3).poke(1.B) //d
-            dut.io.sel(0).poke(1.B)
-            dut.io.sel(1).poke(1.B)
-            dut.io.shift_type.poke(1.B)
-            dut.clock.step(1)
-            dut.io.out(0).expect(1.B)
-            dut.io.out(1).expect(0.B)
-            dut.io.out(2).expect(0.B)
-            dut.io.out(3).expect(0.B)
-        }
+class Task2_Tester extends FreeSpec with ChiselScalatestTester {
+  "task1 Tester file" in {
+    test(new MuxLookup) { a =>
+        a.io.in0.poke(0.B)
+        a.io.in1.poke(1.B)
+        a.io.in2.poke(0.B)
+        a.io.in3.poke(0.B)
+        a.io.in4.poke(1.B)
+        a.io.in5.poke(0.B)
+        a.io.in6.poke(0.B)
+        a.io.in7.poke(0.B)
+        a.io.sel0.poke(0.U)
+        a.io.sel1.poke(1.U)
+        a.io.sel2.poke(1.U)
+        a.io.out.expect(1.B)
+        a.clock.step(1)
+
+
+
     }
+  }
 }
