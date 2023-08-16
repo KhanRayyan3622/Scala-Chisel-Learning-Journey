@@ -1,0 +1,20 @@
+ackage lab3
+import chisel3._
+import chisel3.tester._
+import org.scalatest.FreeSpec
+import chisel3.experimental.BundleLiterals._
+
+class DecoderWithValidTester extends FreeSpec with ChiselScalatestTester {
+  "Decoder with Valid interface" in {
+    test(new decoder_with_valid()) { dut =>
+      for {
+        input <- 0 until 4
+      } {
+        dut.io.in.poke(input.U)
+        dut.clock.step(1)
+        dut.io.out.valid.expect(true.B)
+        dut.io.out.bits.expect((1 << input).U)
+      }
+    }
+  }
+}
