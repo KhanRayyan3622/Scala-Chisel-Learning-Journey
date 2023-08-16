@@ -5,8 +5,8 @@ import chisel3.tester._
 import org.scalatest.FreeSpec
 import chisel3.experimental.BundleLiterals._
 
-class Task2_Tester extends FreeSpec with ChiselScalatestTester {
-  "task1 Tester file" in {
+class EX2_Tester extends FreeSpec with ChiselScalatestTester {
+  "exe2 Tester file" in {
     test(new MuxLookup) { a =>
         a.io.in0.poke(0.B)
         a.io.in1.poke(1.B)
