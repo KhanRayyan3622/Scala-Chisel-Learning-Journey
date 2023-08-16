@@ -1,0 +1,13 @@
+package Lab_3
+import chisel3._
+import chisel3.tester._
+import org.scalatest.FreeSpec
+import chisel3.experimental.BundleLiterals._
+
+class ALUOPTester extends FreeSpec with ChiselScalatestTester {
+  "Test ALUOP constants" in {
+    for (op <- 0 until 16) {
+      ALUOP.ALU_XXX.litValue() shouldBe op
+    }
+  }
+}
