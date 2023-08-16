@@ -1,0 +1,17 @@
+package Lab_1
+
+import chisel3._
+import chisel3.tester._
+import org.scalatest.FreeSpec
+import chisel3.experimental.BundleLiterals._
+
+class Up_Down_Counter_Tester extends FreeSpec with ChiselScalatestTester{
+    "Up Down Counter Class" in {
+        test(new Up_Down_Counter(10)) { a =>
+            //a.io.reload(1.B)
+            a.clock.step(500)
+            //a.io.result.expect(true.B)
+
+        }
+    }
+}
