@@ -1,0 +1,14 @@
+id: file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/test/scala/gcd/practice/SeqcounterTester.scala:[149..156) in Input.VirtualFile("file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/test/scala/gcd/practice/SeqcounterTester.scala", "package practice
+
+import chisel3._
+import chisel3.tester._
+import org.scalatest.FreeSpec
+import chisel3.experimental.BundleLiterals._
+
+class  extends FreeSpec with ChiselScalatestTester{
+    "Controller1Tester file " in {
+    test(new Seqcontroller){ a=>
+     ")
+file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/test/scala/gcd/practice/SeqcounterTester.scala:8: error: expected identifier; obtained extends
+class  extends FreeSpec with ChiselScalatestTester{
+       ^
