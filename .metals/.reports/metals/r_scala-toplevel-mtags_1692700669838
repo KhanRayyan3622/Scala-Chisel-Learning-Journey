@@ -1,0 +1,50 @@
+id: file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/main/scala/gcd/practice/Valid.scala:[354..355) in Input.VirtualFile("file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/main/scala/gcd/practice/Valid.scala", "package practice
+import chisel3 . _
+import chisel3.util._
+
+class Txvalid extends  Module{
+   val io = IO(new Bundle{
+    //Input
+    val tx = Input (Bool())
+     val ready = Input (Bool())
+      val valid = Output (Bool())
+       val data = Output (UInt(4.W))
+   })
+
+
+   class
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+")
+file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/main/scala/gcd/practice/Valid.scala:45: error: expected identifier; obtained rbrace
+}
+^

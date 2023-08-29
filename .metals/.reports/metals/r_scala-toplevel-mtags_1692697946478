@@ -1,0 +1,11 @@
+id: file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/main/scala/gcd/practice/Valid.scala:[70..77) in Input.VirtualFile("file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/main/scala/gcd/practice/Valid.scala", "package practice
+import chisel3 . _
+import chisel3.util._
+
+class  extends  Module{
+   val io = IO(new Bundle{
+    //Input
+    val ")
+file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/main/scala/gcd/practice/Valid.scala:5: error: expected identifier; obtained extends
+class  extends  Module{
+       ^

@@ -11,14 +11,14 @@ class SeqcounterTester extends FreeSpec with ChiselScalatestTester{
     a.io.opcode.poke(3.U)
     a.io.zero.poke(0.B)
     a.io.rst_.poke(0.B)
-    a.io.mem_rd.expect(0.B)
-    a.io.load_ir.expect(0.B)
+    a.io.mem_rd.expect(1.B)
+    a.io.load_ir.expect(1.B)
     a.io.halt.expect(0.B)
     a.io.inc_pc.expect(0.B)
     a.io.load_ac.expect(0.B)
     a.io.load_pc.expect(0.B)
     a.io.mem_wr.expect(0.B)
-    a.clock.step(2)
+    a.clock.step(3)
     }
 }
 }

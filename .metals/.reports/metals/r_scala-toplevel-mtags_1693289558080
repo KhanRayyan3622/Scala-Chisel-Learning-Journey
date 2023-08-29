@@ -1,0 +1,25 @@
+id: file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/test/scala/gcd/lab5/Task1tester.scala:[152..159) in Input.VirtualFile("file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/test/scala/gcd/lab5/Task1tester.scala", "package lab5
+
+
+ import chisel3._
+ import chisel3.tester._
+ import org.scalatest.FreeSpec
+ import chisel3.experimental.BundleLiterals._
+
+ class  extends FreeSpec with ChiselScalatestTester {
+     "adder tester" in {
+         test(new Adder){ a =>
+         a. io.in1.poke(1.U)
+        a.io.in2.poke(1.U)
+         a.clock.step(1)
+         a.io.out.expect(2.U)
+
+    }
+ }
+ }
+    
+
+")
+file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/test/scala/gcd/lab5/Task1tester.scala:9: error: expected identifier; obtained extends
+ class  extends FreeSpec with ChiselScalatestTester {
+        ^

@@ -1,0 +1,11 @@
+id: file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/main/scala/gcd/practice/txRxmain.scala:[75..75) in Input.VirtualFile("file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/main/scala/gcd/practice/txRxmain.scala", "package  practice
+
+import chisel3 . _
+import chisel3.util._
+
+class
+
+")
+file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/main/scala/gcd/practice/txRxmain.scala:8: error: expected identifier; obtained eof
+
+^
