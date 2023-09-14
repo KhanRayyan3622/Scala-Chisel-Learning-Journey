@@ -1,0 +1,27 @@
+id: file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/test/scala/gcd/single_cycle/ALUtester.scala:[153..160) in Input.VirtualFile("file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/test/scala/gcd/single_cycle/ALUtester.scala", "package single_cycle
+
+import chisel3._
+import chisel3.tester._
+import org.scalatest.FreeSpec
+import chisel3.experimental.BundleLiterals._
+
+class  extends FreeSpec with ChiselScalatestTester {
+  "Encoder Tester file" in {
+    test(new ALU){a =>
+        a.io.in_A.poke(23.U)
+        a.io.in_B.poke(23.U)
+        a.io.fun3.poke(2.U)
+         a.io.fun7.expect(0.U)
+          a.clock.step(10)
+        a.io.out.expect(23.U)
+    
+    a.clock.step(10)
+
+    }
+  }
+}
+
+")
+file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/test/scala/gcd/single_cycle/ALUtester.scala:8: error: expected identifier; obtained extends
+class  extends FreeSpec with ChiselScalatestTester {
+       ^

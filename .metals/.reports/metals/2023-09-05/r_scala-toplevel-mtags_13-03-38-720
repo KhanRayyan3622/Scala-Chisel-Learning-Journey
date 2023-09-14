@@ -1,0 +1,15 @@
+id: file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/main/scala/gcd/single_cycle/CU.scala:[74..81) in Input.VirtualFile("file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/main/scala/gcd/single_cycle/CU.scala", "package single_cycle
+
+import chisel3._
+import chisel3.util._
+
+class  extends Module {
+  val io = IO(new Bundle {
+
+  })
+}
+
+")
+file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/main/scala/gcd/single_cycle/CU.scala:6: error: expected identifier; obtained extends
+class  extends Module {
+       ^

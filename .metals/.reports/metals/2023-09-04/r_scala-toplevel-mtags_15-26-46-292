@@ -1,0 +1,10 @@
+id: file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/test/scala/gcd/single%20cycle/regtester.scala:[86..93) in Input.VirtualFile("file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/test/scala/gcd/single%20cycle/regtester.scala", "package gcd.`single cycle`
+
+import chisel3 . _
+import chisel3 . util . _
+
+class  extends Module {
+val io = IO ( new Bundle {")
+file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/test/scala/gcd/single%20cycle/regtester.scala:6: error: expected identifier; obtained extends
+class  extends Module {
+       ^

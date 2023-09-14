@@ -1,0 +1,16 @@
+id: file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/main/scala/gcd/single_cycle/Pc.scala:[165..172) in Input.VirtualFile("file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/main/scala/gcd/single_cycle/Pc.scala", "package single_cycle
+
+import chisel3 . _
+import chisel3 . util . _
+import chisel3 . util . experimental . loadMemoryFromFile
+import scala . io . Source
+class  extends Bundle  {
+val addr = Input ( UInt ( 32 .W ) )
+val inst = Output ( UInt ( 32 . W ) )
+}
+
+
+")
+file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/main/scala/gcd/single_cycle/Pc.scala:7: error: expected identifier; obtained extends
+class  extends Bundle  {
+       ^

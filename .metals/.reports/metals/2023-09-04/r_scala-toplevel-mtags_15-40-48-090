@@ -1,0 +1,15 @@
+id: file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/test/scala/gcd/single_cycle/regtester.scala:[158..165) in Input.VirtualFile("file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/test/scala/gcd/single_cycle/regtester.scala", "package single_cycle
+
+ import chisel3._
+ import chisel3.tester._
+ import org.scalatest.FreeSpec
+ import chisel3.experimental.BundleLiterals._
+
+ class  extends FreeSpec with ChiselScalatestTester{
+    "Encoder tester file"in{
+        test(new  Encoder4to2) {a =>
+
+")
+file:///C:/Users/Saffy%20Yawar/Scala-Chisel-Learning-Journey/src/test/scala/gcd/single_cycle/regtester.scala:8: error: expected identifier; obtained extends
+ class  extends FreeSpec with ChiselScalatestTester{
+        ^
