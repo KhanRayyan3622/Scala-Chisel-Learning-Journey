@@ -37,6 +37,7 @@ class controlunit extends Module {
     when (io.Opcode === "b0110011".U ){//rtype
         io.format :=1.B
         io.Wr_en := 1.B
+        io.Wr_back :=1.B
         io. rd :=(io.in(11,7))
         io. aluop :=Cat(f3,f7(5))
         io. rs1 :=(io.in(19,15))
@@ -45,6 +46,7 @@ class controlunit extends Module {
     .elsewhen(io.Opcode === "b0010011".U){//itype
         io.format := 0.B
         io.Wr_en :=1.B
+        io.Wr_back :=1.B
         io. rd :=(io.in(11,7))
         io. aluop :=Cat(f3,0.U)
         when(f3===5.U||f3===1.U){
@@ -66,7 +68,7 @@ class controlunit extends Module {
      io.rs1:=(io.in(20,15))
      io.aluop:=0.B
      io.mem_wr_en:=0.B
-     io.Wr_back:=1.B
+     io.Wr_back:=0.B
      io.rs2:=0.B
 
      io.imm := Cat(Fill(19,io.in(31)),io.in(31,20))
@@ -78,7 +80,7 @@ class controlunit extends Module {
     io.sformat:=1.B
     io.rs1:=(io.in(20,15))
      io.rs2:=(io.in(25,21))
-     when(f3)
+     //when(f3)
        io.imm := Cat(Fill(19,io.in(31)),io.in(31,25),io.in(11,7))
       io.aluop:= 0.U
       io.mem_wr_en:=1.B

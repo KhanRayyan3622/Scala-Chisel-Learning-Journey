@@ -25,7 +25,8 @@ class Datapath extends Module {
         alu.io.aluop:=cu.io.aluop
         alu.io.in_A:=reg.io.rs1out
         reg.io.ren:=cu.io.Wr_en
-        reg.io.data:=Mux(cu.io.Wr_back,)
+        dmem.io.Wr_en:=cu.io.mem_wr_en
+        reg.io.data:=Mux(cu.io.Wr_back,alu.io.out,dmem.io.Dout)
 
         //alu.io.in_B:=reg.io.rs2out
         when( !cu.io.format || cu.io.sformat){
