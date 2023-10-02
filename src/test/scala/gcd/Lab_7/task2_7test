@@ -1,0 +1,37 @@
+package Lab_7
+import chisel3._
+import chisel3.iotesters.{ChiselFlatSpec, Driver, PeekPokeTester}
+import chisel3.tester
+
+class Manchester_DecodingTester(c: Manchester_Decoding) extends PeekPokeTester(c) {
+  poke(c.io.start, true)
+  
+  // Simulate a Manchester encoded sequence: 01 10 01 10 (decoded: 01010101)
+  poke(c.io.in, 0) // Low-to-High transition (bit 0)
+  step(1)
+  
+  poke(c.io.in, 1) // High-to-Low transition (bit 1)
+  step(1)
+  
+  poke(c.io.in, 0) // Low-to-High transition (bit 0)
+  step(1)
+  
+  poke(c.io.in, 1) // High-to-Low transition (bit 1)
+  step(1)
+  
+  expect(c.io.out, "b01010101".U)
+  expect(c.io.flag, true.B)
+  
+  // Deassert the start signal to reset the FSM
+  poke(c.io.start, false)
+  step(1)
+  
+  expect(c.io.out, "b01010101".U)
+  expect(c.io.flag, false.B)
+}
+
+object Manchester_DecodingTester extends App {
+  iotesters.Driver.execute(Array("--fint-write-vcd"), () => new Manchester_Decoding) { c =>
+    new Manchester_DecodingTester(c)
+  }
+}
