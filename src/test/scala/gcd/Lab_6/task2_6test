@@ -1,0 +1,50 @@
+package Lab_6
+import chisel3._
+import chisel3.util._
+
+class shift_reg_with_parallel_load(val len: Int = 3) extends Module {
+  val io = IO(new Bundle {
+    val out = Vec(len, Output(Bool()))
+    val load_in = Vec(len, Input(Bool()))
+    val in = Input(Bool())
+    val load = Input(Bool())
+  })
+
+  val a = RegInit(VecInit(Seq.fill(len)(0.U(1.W)))) // Initialize a vector of registers with 0
+
+  // Parallel load
+  when(io.load) {
+    a := io.load_in
+  }
+
+  // Shift right
+  for (i <- len - 1 to 1 by -1) {
+    a(i) := a(i - 1)
+  }
+  a(0) := io.in
+
+  // Output
+  io.out := a
+}
+
+object shift_reg_with_parallel_loadTest extends App {
+  chisel3.iotesters.Driver(() => new shift_reg_with_parallel_load(3)) { c =>
+    new PeekPokeTester(c) {
+      poke(c.io.load, true)
+      poke(c.io.load_in(0), true)
+      poke(c.io.load_in(1), false)
+      poke(c.io.load_in(2), true)
+      step(1)
+      expect(c.io.out(0), true.B)
+      expect(c.io.out(1), false.B)
+      expect(c.io.out(2), true.B)
+
+      poke(c.io.load, false)
+      poke(c.io.in, false)
+      step(1)
+      expect(c.io.out(0), false.B)
+      expect(c.io.out(1), true.B)
+      expect(c.io.out(2), false.B)
+    }
+  }
+}
