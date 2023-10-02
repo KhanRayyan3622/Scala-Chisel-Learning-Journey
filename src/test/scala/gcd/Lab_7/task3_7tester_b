@@ -1,0 +1,25 @@
+import chisel3._
+import chisel3.iotesters.{ChiselFlatSpec, Driver, PeekPokeTester}
+import chisel3.util._
+
+class RRArbiterTest(c: MyRRArbiter) extends PeekPokeTester(c) {
+  // Create input data
+  val inputData = Seq(1, 2, 3, 4)
+
+  for (i <- 0 until c.numInputs) {
+    poke(c.io.in(i).valid, true)
+    poke(c.io.in(i).bits, inputData(i).U)
+  }
+
+  for (i <- inputData.indices) {
+    expect(c.io.out.valid, true)
+    expect(c.io.out.bits, inputData(i).U)
+    step(1)
+  }
+}
+
+object RRArbiterTest extends App {
+  chisel3.iotesters.Driver(() => new MyRRArbiter(4)) { c =>
+    new RRArbiterTest(c)
+  }
+}
