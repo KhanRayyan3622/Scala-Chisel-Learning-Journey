@@ -1,0 +1,46 @@
+package Lab_7
+import chisel3._
+import chisel3.util._
+
+object Manchester_Decoding {
+  object State extends ChiselEnum {
+    val IDLE, BIT0_RISING, BIT1_RISING = Value
+  }
+}
+
+class Manchester_Decoding extends Module {
+  import Manchester_Decoding.State._
+  val io = IO(new Bundle {
+    val in = Input(UInt(1.W))
+    val start = Input(Bool())
+    val out = Output(UInt(8.W))
+    val flag = Output(UInt(1.W))
+  })
+
+  val outputRegister = RegInit(0.U(8.W))
+
+  val stateReg = RegInit(IDLE)
+
+  when(stateReg === IDLE && io.start) {
+    stateReg := BIT0_RISING
+  }.elsewhen(stateReg === BIT0_RISING) {
+    when(io.in === 1.U) {
+      outputRegister := Cat(0.U(7.W), io.in)
+      stateReg := BIT1_RISING
+    }
+  }.elsewhen(stateReg === BIT1_RISING) {
+    // Check for Manchester decoded bit 1 (transition from high to low)
+    when(io.in === 0.U) {
+      outputRegister := Cat(0.U(7.W), io.in)
+      stateReg := IDLE
+    }
+  }
+
+  io.out := outputRegister
+  // Set the flag to indicate valid output
+  io.flag := (stateReg === IDLE && io.start)
+
+  when(stateReg === IDLE && io.start) {
+    outputRegister := Cat(0.U(7.W), io.in)
+  }
+}
