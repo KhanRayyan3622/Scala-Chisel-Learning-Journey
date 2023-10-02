@@ -6,7 +6,7 @@ import chisel3.experimental.BundleLiterals._
 
 class task4tester extends FreeSpec with ChiselScalatestTester {
 
-  "lab 6 task4" in {
+  "Lab_6 Task_4" in {
     test(new task4()){ dut =>
         //dut.io.in.valid.poke(1.B)
         dut.io.up_down.poke(1.B)
