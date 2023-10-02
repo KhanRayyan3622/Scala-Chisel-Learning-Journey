@@ -1,0 +1,18 @@
+package Lab_7
+import chisel3._
+import chisel3.util._
+
+class MyArbiter(numInputs: Int) extends Module {
+  val io = IO(new Bundle {
+    val in = Vec(numInputs, Flipped(Decoupled(UInt(8.W))))
+    val out = Decoupled(UInt(8.W))
+  })
+
+  val arbiter = Module(new Arbiter(UInt(8.W), numInputs))
+
+  for (i <- 0 until numInputs) {
+    arbiter.io.in(i) <> io.in(i)
+  }
+
+  io.out <> arbiter.io.out
+}
