@@ -7,7 +7,7 @@ class Datapath extends Module {
   val io = IO(new Bundle {
       val im = Module (new InstMem ("C:/Users/Rayyan Khan/Scala-Chisel-Learning-Journey/src/main/scala/gcd/insideMem.txt"))
       val out = Output (UInt(32.W))
-      val reg = Module (new register)
+      val reg = Module (new Register)
       val cu = Module (new controlunit)
       val pc = Module (new PC)
       val alu = Module (new ALU_imp)
