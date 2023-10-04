@@ -47,7 +47,7 @@ switch(io.func3)
     
     }
     is(7.U){
-        when(io.x>= io.y){
+        when(io.x <= io.y){
             io.isbranch:=1.B
         }
         .otherwise{
