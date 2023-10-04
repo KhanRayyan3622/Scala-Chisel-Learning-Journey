@@ -8,6 +8,7 @@ object aluop{
   val SUB = 1.U(4.W)
   val AND = 2.U(4.W)
   val OR = 4.U(4.W)
+  val GTE = 5.U(4.W)
   val XOR = 6.U(4.W)
   val SLL = 8.U(4.W)
   val SLT = 10.U(4.W)
@@ -45,10 +46,20 @@ class ALU_imp extends Module {
     is(4.U) { 
       io.out := io.in_A | io.in_B
     }
+    // GREATER THEN EQUAL TO
+    is(5.U) { 
+      io.out := (io.in_A.asSInt >= io.in_B.asSInt).asUInt
+
     // XOR
     is(6.U) { 
       io.out := io.in_A ^ io.in_B
     }
+    
+    // LESS THEN EQUAL TO
+    is(7.U) { 
+      io.out := (io.in_A.asSInt <= io.in_B.asSInt).asUInt
+    }
+
     // SHIFT LEFT LOGICAL
     is(8.U) { 
       io.out := io.in_A << (io.in_B(4, 0).asUInt)
