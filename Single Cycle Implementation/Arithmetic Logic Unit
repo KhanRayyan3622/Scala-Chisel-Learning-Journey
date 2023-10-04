@@ -10,6 +10,7 @@ object aluop{
   val OR = 4.U(4.W)
   val GTE = 5.U(4.W)
   val XOR = 6.U(4.W)
+  val LTE = 7.U(4.W)
   val SLL = 8.U(4.W)
   val SLT = 10.U(4.W)
   val SLTU = 11.U(4.W) 
