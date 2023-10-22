@@ -5,7 +5,7 @@ import chisel3.util._
 
 class Datapath extends Module {
   val io = IO(new Bundle {
-      val im = Module (new InstMem ("C:/Users/Rayyan Khan/Scala-Chisel-Learning-Journey/src/main/scala/gcd/insideMem.txt"))
+      val im = Module (new InstMem ("C:/Users/Rayyan Khan/Scala-Chisel-Learning-Journey/src/main/scala/gcd/IMEM.txt"))
       val out = Output (UInt(32.W))
       val reg = Module (new Register)
       val cu = Module (new controlunit)
