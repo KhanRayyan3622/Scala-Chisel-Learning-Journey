@@ -9,7 +9,7 @@ class Data_Mem extends Module {
     val addr = Input(UInt(32.W))
     val din = Input(SInt(32.W))
     val dout = Output(SInt(32.W))
-    val fun3 = Input(UInt(3.W))
+    val func3 = Input(UInt(3.W))
     val enable = Input(Bool())
   })
 
@@ -36,7 +36,7 @@ class Data_Mem extends Module {
   mask(3) := 0.B
 
   when(io.wen) {
-    when(io.fun3 === 0.U) { //SB
+    when(io.func3 === 0.U) { //SB
       when(io.addr(1, 0) === 0.U) {
         mask(0) := 1.B
         mask(1) := 0.B
@@ -70,7 +70,7 @@ class Data_Mem extends Module {
       }
 
     }
-      .elsewhen(io.fun3 === 1.U) { // SH
+      .elsewhen(io.func3 === 1.U) { // SH
         when(io.addr(1, 0) === 0.U) {
           mask(0) := 1.B
           mask(1) := 1.B
@@ -107,7 +107,7 @@ class Data_Mem extends Module {
         }
 
       }
-      .elsewhen(io.fun3 === 2.U) { // SW
+      .elsewhen(io.func3 === 2.U) { // SW
         mask(0) := 1.B
         mask(1) := 1.B
         mask(2) := 1.B
@@ -124,7 +124,7 @@ class Data_Mem extends Module {
   t_read := mem.read(io.addr(31,2))
   when(io.enable){
   t_read := mem.read(io.addr(31,2))
-  when(io.fun3 === 0.U) {
+  when(io.func3 === 0.U) {
     // Loading Byte now
     when(io.addr(1,0) === 0.U){
     io.dout := Cat(Fill(24,t_read(0)(7)),t_read(0)).asSInt()}
@@ -136,7 +136,7 @@ class Data_Mem extends Module {
     io.dout := Cat(Fill(24,t_read(3)(7)),t_read(3)).asSInt()}
 
     
-  }.elsewhen(io.fun3 === 1.U) {
+  }.elsewhen(io.func3 === 1.U) {
     //else Load Halfword
     when(io.addr(1,0) === 0.U){
     io.dout := Cat(Fill(16,t_read(0)(7)),t_read(0),t_read(1)).asSInt()}
@@ -147,7 +147,7 @@ class Data_Mem extends Module {
     .elsewhen(io.addr(1,0)=== 3.U){
     io.dout := Cat(Fill(24,t_read(3)(7)),t_read(3)).asSInt()}
 
-  }.elsewhen(io.fun3 === 2.U) { //lW
+  }.elsewhen(io.func3 === 2.U) { //lW
     io.dout := Cat(t_read(3), t_read(2), t_read(1), t_read(0)).asSInt()
   }
 }
