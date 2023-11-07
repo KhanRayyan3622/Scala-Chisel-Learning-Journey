@@ -1,4 +1,4 @@
-package singlecycle
+package single_cycle
 
 import chisel3._
 import chisel3.util._
